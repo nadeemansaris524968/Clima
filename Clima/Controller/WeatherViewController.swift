@@ -13,6 +13,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var searchTextfield: UITextField!
     
     var weatherManager = WeatherManager()
@@ -51,6 +52,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     func didUpdateWeather(with weatherModel: WeatherModel) {
         DispatchQueue.main.async {
             self.temperatureLabel.text = weatherModel.temperatureString
+            self.conditionImageView.image = UIImage(systemName: weatherModel.conditionName)
+            self.cityLabel.text = weatherModel.city
+            self.weatherDescriptionLabel.text = weatherModel.description
         }
     }
     
